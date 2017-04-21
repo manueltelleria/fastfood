@@ -1,0 +1,48 @@
+<div data-role="dialog" data-overlay="true" data-overlay-color="op-dark" data-overlay-click-close="true" id="modificador" data-width="800" data-height="400">
+	<center>
+		<div class="panel">
+			<div class="heading">
+				<span class="title">Modificadores</span>
+			</div>
+			<div class="padding10">
+
+				<div class="tabcontrol2" data-role="tabcontrol">
+
+					<ul class="tabs">
+
+						<li><a href="#ext">Extras</a></li>
+
+						<li><a href="#mod">Modificadores</a></li>
+
+					</ul>
+
+					<div class="frames content-prod">
+
+						<div class="frame panel-extras" id="ext">
+
+							{% block extras %}
+
+								<!-- Aqui van los botones de los extras -->
+
+							{% endblock extras %}
+
+						</div>
+
+						<div class="frame panel-modificadores" id="mod">
+
+							{% block modificadores %}
+
+								<!-- Aqui van los botones de los modificadores -->
+
+							{% endblock modificadores %}
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</center>
+</div>

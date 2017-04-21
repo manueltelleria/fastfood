@@ -1,0 +1,74 @@
+<div data-role="dialog" data-overlay="true" data-overlay-color="op-dark" data-overlay-click-close="true" id="devolucion" data-place="top-center">
+	<div class="panel">
+		<div class="margin20">
+			<strong>Devolución</strong>
+			<br><br><hr>
+			<div id="search-info-rev" style="display: none;">
+				<center>
+					<div class="notify info" style="text-align: left;">
+						<span class="notify-text">La factura no se encuentra registrada en el sistema.</span>
+					</div>
+				</center>
+				<br><br>
+			</div>
+			<div id="rev-exist" style="display: none;">
+				<center>
+					<div class="notify info" style="text-align: left;">
+						<span class="notify-text">La nota de crédito ya existe en el sistema.</span>
+					</div>
+				</center>
+				<br><br>
+			</div>
+			<div id="impress-warn-rev" style="display: none;">
+				<center>
+					<div class="notify warning" style="text-align: left;">
+						<span class="notify-text">Por favor verifique el dispositivo de impresión.</span>
+					</div>
+				</center>
+				<br><br>
+			</div>
+			<div class="cell">
+				<div class="input-control text" style="width: 100%">
+					<input id="inp_nunfac" type="text" class="num-doc val-nfac" placeholder="Numero de factura" autocomplete="off" maxlength="8">
+					<button class="button primary buscar_fact"><span class="icon mif-search"></span></button>
+				</div>
+			</div>
+			<br><hr><br>
+			<div class="cell place-left" style="width: 49%">
+				<label>Nombre del cliente</label>
+				<div class="input-control text" style="width: 100%">
+					<input type="text" id="nom-cliente" readonly disabled>
+				</div>
+			</div>
+			<div class="cell place-right" style="width: 49%">
+				<label>Identificación del cliente</label>
+				<div class="input-control text" style="width: 100%">
+					<input type="text" id="docu-cliente" readonly disabled>
+				</div>
+			</div>
+			<br>
+			<div class="cell place-left" style="width: 49%">
+				<label>Fecha de factura</label>
+				<div class="input-control text" style="width: 100%">
+					<input type="text" id="fecha-fact" readonly disabled>
+				</div>
+			</div>
+			<div class="cell place-right" style="width: 49%">
+				<label>Numero de factura</label>
+				<div class="input-control text" style="width: 100%">
+					<input type="text" id="nro-fact" readonly disabled>
+				</div>
+			</div>
+			<br>
+			<div class="cell" style="width: 100%">
+				<label>Monto</label>
+				<div class="input-control text big-input" style="width: 100%">
+					<input type="text" id="mont-fact" readonly disabled>
+				</div>
+			</div>
+			<br><br>
+
+			<button class="button large-button primary confirm-dev" style="width: 100%" disabled>Confirmar</button>
+		</div>
+	</div>
+</div>

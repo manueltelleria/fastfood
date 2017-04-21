@@ -1,0 +1,150 @@
+<div data-role="dialog" data-overlay="true" data-overlay-color="op-dark" data-overlay-click-close="true" id="aceptar" data-place="top-center">
+	<div class="panel">
+		<div class="margin20">
+			<div id="confirm-err" style="display: none;">
+				<center>
+					<div class="notify alert" style="text-align: left;">
+						<span class="notify-text">Debe seleccionar al menos un producto para confirmar la venta.</span>
+					</div>
+				</center>
+				<br><br>
+			</div>
+			<div id="impress-warn" style="display: none;">
+				<center>
+					<div class="notify warning" style="text-align: left;">
+						<span class="notify-text">Por favor verifique el dispositivo de impresión.</span>
+					</div>
+				</center>
+				<br><br>
+			</div>
+			<div id="search-info" style="display: none;">
+				<center>
+					<div class="notify info" style="text-align: left;">
+						<span class="notify-text">El cliente no se encuentra registrado en el sistema.</span>
+					</div>
+				</center>
+				<br><br>
+			</div>
+			<div id="change-error" style="display: none;">
+				<center>
+					<div class="notify warning" style="text-align: left;">
+						<span class="notify-text">La cantidad ingresada no coincide con el monto de la factura</span>
+					</div>
+				</center>
+				<br><br>
+			</div>
+			<strong>Datos del cliente</strong>
+			<br><br><hr>
+			<div id="datos_cliente">
+				<div class="input-control select place-left" style="width: 19%">
+					<select class="sel-doc" id="tipo-doc">
+						<option value="V">V</option>
+						<option value="E">E</option>
+						<option value="J">J</option>
+						<option value="G">G</option>
+					</select>
+				</div>
+				<div class="input-control text place-right" style="width: 80%">
+					<input id="inp_rif" type="text" class="num-doc val_rif" placeholder="RIF o Cédula" autocomplete="off" maxlength="9">
+					<button class="button primary buscar"><span class="icon mif-search"></span></button>
+				</div>
+				<br>
+				<div class="input-control text place-left" style="width: 49%">
+					<input id="inp_fname" type="text" class="cli-nom val-name" placeholder="Nombre" autocomplete="off" maxlength="50">
+				</div>
+				<div class="input-control text place-right" style="width: 49%">
+					<input id="inp_lname" type="text" class="cli-ape val-name" placeholder="Apellido" autocomplete="off" maxlength="50">
+				</div>
+				<br>
+				<div class="input-control text" style="width: 100%">
+					<input id="inp_address" type="text" class="cli-dir val-adress" placeholder="Dirección" autocomplete="off" maxlength="100">
+				</div>
+			</div>
+			<br>
+			<!-- <strong>Metodo de pago</strong> -->
+			&nbsp;
+{#            <button id="btn-plus" class="button success"><span class="icon mif-plus"></span></button>#}
+			<!-- <br><hr> -->
+			<hr>
+			<div class="pagos">
+            <input type="hidden" name="metodo_p" id="metodo_p">
+            <input type="hidden" name="metodo_p" id="metodo_p_id">
+				<div id="uno">
+					<!-- <div class="input-control select place-left" style="width: 49%">
+						<select class="mp">
+							{% for mp in metodos_pago %}
+								<option value="{{ mp.id }}">{{ mp.nombre }}</option>
+							{% endfor %}
+						</select>
+					</div> 
+					<div class="input-control place-right text" style="width: 50%">
+						<input id="inp_cant1" type="text" class="cant val-cant" placeholder="Cantidad" autocomplete="off" maxlength="9">
+{#                        <button id="btn-uno" class="button danger"><span class="icon mif-minus"></span></button>#}
+					</div> -->
+					<div class="input-control place-right text" style="width: 99%">
+						<input id="inp_cant1" name="inp_cant1" type="text" class="cant val-cant" placeholder="Cantidad" autocomplete="off" maxlength="9">
+					</div>
+					<br>
+				</div>
+				<div id="dos" style="display: none;">
+					<div class="input-control select place-left" style="width: 49%">
+						<select class="mp">
+							{% for mp in metodos_pago %}
+								<option value="{{ mp.id }}">{{ mp.nombre }}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="input-control place-right text" style="width: 50%">
+						<input id="inp_cant2" type="text" class="cant val-cant" placeholder="Cantidad" autocomplete="off" maxlength="9">
+						<button id="btn-dos" class="button danger"><span class="icon mif-minus"></span></button>
+					</div>
+					<br>
+				</div>
+				<div id="tres" style="display: none;">
+					<div class="input-control select place-left" style="width: 49%">
+						<select class="mp">
+							{% for mp in metodos_pago %}
+								<option value="{{ mp.id }}">{{ mp.nombre }}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="input-control place-right text" style="width: 50%">
+						<input id="inp_cant3" type="text" class="cant val-cant" placeholder="Cantidad" autocomplete="off" maxlength="9">
+						<button id="btn-tres" class="button danger"><span class="icon mif-minus"></span></button>
+					</div>
+					<br>
+				</div>
+				<div id="cuatro" style="display: none;">
+					<div class="input-control select place-left" style="width: 49%">
+						<select class="mp">
+							{% for mp in metodos_pago %}
+								<option value="{{ mp.id }}">{{ mp.nombre }}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="input-control place-right text" style="width: 50%">
+						<input id="inp_cant4" type="text" class="cant val-cant" placeholder="Cantidad" autocomplete="off" maxlength="9">
+						<button id="btn-cuatro" class="button danger"><span class="icon mif-minus"></span></button>
+					</div>
+					<br>
+				</div>
+				<div id="cinco" style="display: none;">
+					<div class="input-control select place-left" style="width: 49%">
+						<select class="mp">
+							{% for mp in metodos_pago %}
+								<option value="{{ mp.id }}">{{ mp.nombre }}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="input-control place-right text" style="width: 50%">
+						<input id="inp_cant5" type="text" class="cant val-cant" placeholder="Cantidad" autocomplete="off">
+						<button id="btn-cinco"  class="button danger"><span class="icon mif-minus"></span></button>
+					</div>
+					<br>
+				</div>
+			</div>
+			<br><br>
+			<button class="button large-button primary confirm" style="width: 100%">Confirmar</button>
+		</div>
+	</div>
+</div>

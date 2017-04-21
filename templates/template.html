@@ -1,0 +1,226 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Language" content="es">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="Author" content="Joab Gonzalez | Alfredo Rodriguez">
+		<meta name="Copyright" content="© Joab Gonzalez | Alfredo Rodriguez">
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<title>{% block title %}<!-- Titulo -->{% endblock title %}</title>
+
+		<!-- Metro UI -->
+		<link href="{% static 'css/metro.min.css' %}" rel="stylesheet">
+		<link href="{% static 'css/metro-icons.min.css' %}" rel="stylesheet">
+		<link href="{% static 'css/jquery.dataTables.min.css' %}" rel="stylesheet">
+
+		<!-- Estilos personalizados -->
+		<link href="{% static 'css/style.css' %}" rel="stylesheet">
+		{% block css %}
+
+		{% endblock css %}
+	</head>
+
+	<body>
+
+		<div class="grid">
+			<div class="row cells12">
+
+				<!-- ################################################################################# -->
+
+				<div class="cell colspan7"><center>
+					<div class="panel">
+						<div class="heading">
+							<span class="title">{% block panel_title %}<!-- Titulo -->{% endblock panel_title %}</span>
+						</div>
+						<br>
+						<div class="tabcontrol2" data-role="tabcontrol">
+							<ul class="tabs">
+
+								<li><a href="#combo">Combos</a></li>
+
+									{% block categoria %}
+
+									<!-- Categoria -->
+
+									{% endblock categoria %}
+
+							</ul>
+							<div class="frames content-prod">
+
+								<div class="frame" id="combo">
+
+									{% block combos %}
+
+									<!-- Combos -->
+
+									{% endblock combos %}
+
+								</div>
+
+								{% block producto %}
+
+								<!-- Productos -->
+
+								{% endblock producto %}
+
+							</div>
+						</div>
+					</div>
+				</center></div>
+
+				<!-- ################################################################################# -->
+
+				<div class="cell colspan4"><center>
+					<div class="panel">
+						<div class="heading">
+							<span class="title">{% block factura_title %}<!-- Titulo -->{% endblock factura_title %}</span>
+						</div>
+						<div class="content content-fact">
+							<input type="hidden" id="cant_items" value="0">
+							<input type="hidden" id="iva" value="{{ iva.valor }}">
+							<input type="hidden" id="iva_elect" value="10.0">
+							<input type="hidden" id="usuario" value="{{ request.user.pk }}">
+							<input type="hidden" id="establecimiento" value="{{ establecimiento.pk }}">
+							<input type="hidden" id="venta" value="{{ venta.pk }}">
+							<table class="table table-factura compact">
+								<thead>
+									<tr>
+										<th class="">Codigo</th>
+										<th class="">Nombre</th>
+										<th class="">Precio (Bs)</th>
+									</tr>
+								</thead>
+								<tbody>
+							{% csrf_token %}
+							{% block panel_factura %}
+
+
+							{% endblock panel_factura %}
+
+							</tbody>
+							</table>
+
+						</div>
+						<div class="content">
+							<table class="table compact">
+								<thead>
+									<tr>
+										<th class="">Sub-total (Bs)</th>
+										{% comment %}<th class="">I.V.A. (Bs)</th>
+										<th class="">Total (Bs)</th>{% endcomment %}
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="fac-sub-total">0.00</td>
+										{% comment %}<td class="fac-iva">0.00</td>
+										<td class="fac-total">0.00</td>{% endcomment %}
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<button class="button large-button danger place-left btn-cancel refresh"><span class="mif-cross"></span> Cancelar</button>
+						<button class="button large-button success place-right btn-ok val_prod" onclick="showDialog('#aceptar')"><span class="mif-checkmark"></span> Aceptar</button>
+						<button class="button large-button primary" style="width: 100%" onclick="showDialog('#opcion')"><span class="mif-cog"></span> Opciones</button>
+					</div>
+				</center></div>
+
+				<!-- ################################################################################# -->
+
+				<div class="cell colspan1"><center>
+					<button class="shortcut-button success val_btn add_modi">
+						<span class="icon mif-redo"></span>
+						<span class="title">Agregar</span>
+					</button>
+					<button class="shortcut-button danger val_btn del_modi">
+						<span class="icon mif-undo"></span>
+						<span class="title">Borrar</span>
+					</button>
+					<button class="shortcut-button primary val_btn cha_modi">
+						<span class="icon mif-loop2"></span>
+						<span class="title">Cambiar</span>
+					</button>
+					<button class="shortcut-button info val_btn up_prod">
+						<span class="icon mif-arrow-up"></span>
+						<span class="title">Agrandar</span>
+					</button>
+					<button class="shortcut-button warning val_btn down_prod">
+						<span class="icon mif-arrow-down"></span>
+						<span class="title">Reducir</span>
+					</button>
+				</center></div>
+
+				<!-- ################################################################################# -->
+
+			</div>
+
+		</div>
+
+		<!-- ################################################################################# -->
+		<!-- Modal de opciones -->
+
+		{% include "includes/modal_opciones.html" %}
+
+		<!-- ################################################################################# -->
+		<!-- Modal de pago -->
+
+		{% include "includes/modal_pago.html" %}
+
+		<!-- ################################################################################# -->
+		<!-- Modal de cambio -->
+
+		{% include "includes/modal_cambio.html" %}
+
+		<!-- ################################################################################# -->
+		<!-- Modal de modificadores -->
+
+		{% include "includes/modal_modificadores.html" %}
+
+		<!-- ################################################################################# -->
+		<!-- Modal de devoluciones -->
+
+		{% include "includes/modal_devolucion.html" %}
+
+		<!-- ################################################################################# -->
+		<!-- Modal change -->
+
+		{% include "includes/modal_change.html" %}
+
+		<!-- ################################################################################# -->
+		<!-- Modal change -->
+
+		{% include "includes/modal_metodo_pago.html" %}
+
+		<!-- ################################################################################# -->
+
+
+		<!-- jQuery -->
+		<script src="{% static 'js/jquery.min.js' %}"></script>
+		<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+		<!-- Metro UI -->
+		<script src="{% static 'js/metro.min.js' %}"></script>
+		<!-- Validations -->
+		<script src="{% static 'js/jquery.numeric.min.js' %}"></script>
+		<script src="{% static 'js/validations.js' %}"></script>
+		<!-- JS Personalizados -->
+		<script src="{% static 'js/main.js' %}"></script>
+		<script src="{% static 'js/modal_pago.js' %}"></script>
+
+		{% block script %}
+
+		<script>
+			function showDialog(id) {
+				var dialog = $(id).data('dialog');
+				dialog.open();
+			}
+		</script>
+
+		{% endblock script %}
+	</body>
+
+</html>

@@ -1,0 +1,95 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="Content-Language" content="es">
+	<meta name="Author" content="Joab Gonzalez | Alfredo Rodriguez">
+	<meta name="Copyright" content="© Joab Gonzalez | Alfredo Rodriguez">
+
+	<title>FastFood</title>
+
+	<!-- Metro UI -->
+	<link href="{% static 'css/metro.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/metro-icons.min.css' %}" rel="stylesheet">
+
+	<!-- Estilos personalizados -->
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="grid">
+
+	<div class="row cells12">
+
+		<div class="cell colspan4"></div>
+
+		<div class="cell colspan4"><center>
+
+			<div class="panel">
+				<div class="heading">
+					<span class="title">FastFood</span>
+				</div>
+				<div class="content">
+
+					{% if form.errors %}
+
+						<div class="notify alert" style="text-align: left;">
+							<span class="notify-title"><strong>Error</strong></span>
+							<span class="notify-text">Su usuario y contraeña no coinciden. Por favor intente de nuevo.</span>
+						</div>
+
+					{% endif %}
+
+
+					<form method="POST">
+						{% csrf_token %}
+
+						<!--USUARIO-->
+
+						<br>
+						<div class="input-control text" data-role="input" style="width: 80%">
+							<span class="mif-user prepend-icon"></span>
+							<input type="text" placeholder="Usuario" name="username" id="id_username" autocomplete="off">
+							<button class="button helper-button clear"><span class="mif-cross"></span></button>
+						</div>
+
+						<!--CONTRASEÑA-->
+
+						<div class="input-control password" data-role="input" style="width: 80%">
+							<span class="mif-lock prepend-icon"></span>
+							<input type="password" placeholder="Password" name="password" id="id_password">
+							<button class="button helper-button reveal"><span class="mif-eye"></span></button>
+						</div>
+
+						<!--LOGIN-->
+
+						<br>
+						<button type="submit" class="button large-button primary" style="width: 80%">Ingresar</button>
+						<br><br>
+
+					</form>
+				</div>
+			</div>
+
+		</center></div>
+
+		<div class="cell colspan4"></div>
+
+	</div>
+
+</div>
+
+<!-- jQuery -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+
+<!-- Metro UI -->
+<script src="{% static 'js/metro.min.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+.content-prod {
+    position: absolute;
+    height: 78vh;  /*545px;*/
+}
+
+.content-fact {
+    position: absolute;
+    height: 62vh;  /*500px;*/
+}
+
+body {
+    position: relative;
+}
+
+.btn-ok {
+    width: 50%;
+}
+
+.btn-cancel {
+    width: 49%;
+}
+
+.field-pass{
+    border: 2px solid #60a917 !important;
+}
+
+.field-fail{
+    border: 2px solid #ce352c !important;
+}

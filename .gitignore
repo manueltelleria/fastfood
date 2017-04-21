@@ -1,0 +1,6 @@
+.idea
+db.sqlite3
+*.pyc
+migrations/
+fastfood/settings.py
+.DS_Store

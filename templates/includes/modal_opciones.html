@@ -1,0 +1,48 @@
+{% load extras %}
+<div data-role="dialog" data-overlay="true" data-overlay-color="op-dark" data-overlay-click-close="true" id="opcion">
+	<div class="panel">
+		<div class="margin20">
+			<strong>Opciones</strong>
+			<br><br><hr>
+			{% if request.user|has_group:"Admin" %}
+				<a href="{% url 'admin:index' %}" target="_blank" onclick="hideMetroDialog('#opcion')">
+					<button class="shortcut-button info margin20">
+						<span class="icon mif-cogs"></span>
+						<span class="title">Admin</span>
+					</button>
+				</a>
+				<button id="btn_devolucion" class="shortcut-button warning margin20 no-margin-left" onclick="hideMetroDialog('#opcion'); showDialog('#devolucion');">
+					<span class="icon mif-spinner4"></span>
+					<span class="title">Devolución</span>
+				</button>
+				<button class="shortcut-button success margin20 no-margin-left reportez">
+					<span class="icon mif-file-text"></span>
+					<span class="title">Reporte Z</span>
+				</button>
+				<button class="shortcut-button primary margin20 no-margin-left reportex">
+					<span class="icon mif-file-text"></span>
+					<span class="title">Reporte X</span>
+				</button>
+                <a href="{% url 'csv_export' %}">
+                    <button class="shortcut-button primary margin20 no-margin-left venta">
+                        <span class="icon mif-file-text"></span>
+                        <span class="title">CSV Venta</span>
+                    </button>
+                </a>
+				<a href="{% url 'logout' %}">
+					<button class="shortcut-button danger margin20 no-margin-left">
+						<span class="icon mif-exit"></span>
+						<span class="title">Salir</span>
+					</button>
+				</a>
+			{% else %}
+				<a href="{% url 'logout' %}">
+					<button class="shortcut-button danger margin20 no-margin-left">
+						<span class="icon mif-exit"></span>
+						<span class="title">Salir</span>
+					</button>
+				</a>
+			{% endif %}
+		</div>
+	</div>
+</div>

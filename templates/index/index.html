@@ -1,0 +1,65 @@
+{% extends "template.html" %}
+
+{% block title %} FastFood {% endblock title %}
+
+<!-- ################################################################################# -->
+
+{% block panel_title %} FastFood {% endblock panel_title %}
+
+<!-- ################################################################################# -->
+
+{% block categoria %}
+
+	{% for c in categoria %}
+
+		<li><a href="#{{ c.id }}">{{ c.nombre|upper }}</a></li>
+
+	{% endfor %}
+
+{% endblock categoria %}
+
+<!-- ################################################################################# -->
+
+{% block factura_title %} Factura {% endblock factura_title %}
+
+<!-- ################################################################################# -->
+
+{% block combos %}
+
+	{% for x in combo %}
+
+		<button class="shortcut-button primary cat" id="cmb_{{ x.id }}">
+			<span class="badge">C-{{ x.formated_id }}</span>
+			<span class="title">{{ x.nombre|capfirst }}</span>
+		</button>
+
+	{% endfor %}
+
+{% endblock combos %}
+
+<!-- ################################################################################# -->
+
+{% block producto %}
+
+	{% for c in categoria %}
+		<div class="frame" id="{{ c.id }}">
+			{% for p in producto %}
+				{% if c.id == p.categoria_id %}
+					<button class="shortcut-button primary cat" id="prd_{{ p.id }}">
+						<span class="badge">P-{{ p.formated_id }}</span>
+						<span class="title">{{ p.nombre|capfirst }}</span>
+					</button>
+				{% endif %}
+			{% endfor %}
+		</div>
+	{% endfor %}
+
+{% endblock producto %}
+
+<!-- ################################################################################# -->
+
+{% block panel_factura %}
+
+	<!-- Factura -->
+
+{% endblock panel_factura %}
