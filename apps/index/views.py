@@ -24,6 +24,7 @@ class Vista(ListView):
     def get_context_data(self, **kwargs):
         context = super(Vista, self).get_context_data(**kwargs)
         context['iva'] = Globals.objects.get(nombre="iva")
+        context['iva_electronico'] = Globals.objects.get(nombre="iva_electronico")
         context['producto'] = Productos.objects.all()
         context['combo'] = Combos.objects.all()
         context['metodos_pago'] = Formasdepago.objects.all()
@@ -260,6 +261,8 @@ def ajaxventa(request):
         usuario = User.objects.get(pk=data_r['usuario'])
         establecimiento = Establecimientos.objects.get(pk=data_r['establecimiento'])
         caja = Globals.objects.get(nombre="caja")
+        ObjIva  = Globals.objects.get(nombre="iva")
+        ObjIvaElectronico = Globals.objects.get(nombre="iva_electronico")
 
         # Cliente #
         cli_docu = data_r['cli_doc']
@@ -289,9 +292,10 @@ def ajaxventa(request):
         total = data_r['total']
         subtotal = data_r['subtotal']
         if form_pag == 1:
-            iva = 12.0
+            iva = ObjIva.valor
         else:
-            iva = 10.0
+            iva = ObjIvaElectronico.valor
+
         venta.total_bruto = float(subtotal)
         venta.total_neto = float(total)
         venta.iva = float(iva)
@@ -497,6 +501,7 @@ def ajaxreversefact(request):
         except Facturas.DoesNotExist:
             data.append({"status": "Not Found"})
             return HttpResponse(json.dumps(data), content_type='application/json')
+
         try:
             nota_old = Notasdecredito.objects.get(factura=fact)
             data.append({"status": "Already Exist"})
@@ -606,6 +611,7 @@ def ajaxreportez(request):
         port = Globals.objects.get(nombre="puerto")
         imp = tf_ve_ifpython.tf_ve_ifpython()
         try:
+
             imp.mdepura = True
             imp.OpenFpctrl(port.valor)
             imp.updateReport("I0Z")

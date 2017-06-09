@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Productos, Pedidos, Formasdepago, Ventas, Categoria, Modificadores, Combos, Tipodeventa, Clientes, \
-    Facturas, Notasdecredito, Borradas, Establecimientos, Globals, Tamanoproducto, Tamanocombo
+    Facturas, Notasdecredito, Borradas, Establecimientos, Globals, Tamanoproducto, Tamanocombo, Pagos
 # Register your models here.
 
 
@@ -57,6 +57,9 @@ class FormasPagoAdmin(admin.ModelAdmin):
 class ClientesAdmin(admin.ModelAdmin):
     list_display = ("id", "nombre", "apellido", "documento", "direccion")
 
+class PagosAdmin(admin.ModelAdmin):
+    list_display = ("id", "monto", "forma_id", "venta_id")
+
 admin.site.register(Productos, ProductosAdmin)
 admin.site.register(Combos, CombosAdmin)
 admin.site.register(Categoria)
@@ -73,3 +76,4 @@ admin.site.register(Establecimientos, EstablecimientosAdmin)
 admin.site.register(Globals)
 admin.site.register(Tamanoproducto, TamanoproductoAdmin)
 admin.site.register(Tamanocombo, TamanocomboAdmin)
+admin.site.register(Pagos, PagosAdmin)

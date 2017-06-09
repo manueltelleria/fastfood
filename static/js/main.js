@@ -1,4 +1,3 @@
-$(document).ready(function(){
 
 	showDialog('#metodo_pago');
 
@@ -952,7 +951,7 @@ $(document).ready(function(){
 		var establecimiento = $("#establecimiento").val();
 		$.ajax({
 			data: {'establecimiento': establecimiento, 'usuario': usuario},
-			url: '/reverse_factura_ajax/',
+			url: '/reporte_x_ajax/',
 			type: 'POST',
 			dataType: 'json',
 			success: function(data) {
